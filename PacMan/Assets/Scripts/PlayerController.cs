@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     //Pacman speed
-    public float speed = 0.35f;
+    private float speed = 0.10f;
     //RigidBody variable
     Rigidbody2D rb2d;
+    Animator animator;
+    Vector2 direction;
 
     //Pacman next destination
     private Vector2 dest = Vector2.zero;
@@ -17,13 +19,14 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         //initialize the rigidbody variable
         rb2d = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         //stay still when the game starts
         dest = transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate() {
         //Gets the next point position that towards to the destination
         Vector2 temp = Vector2.MoveTowards(transform.position, dest, speed);
         //setting the object position by using rigidbody
@@ -52,7 +55,10 @@ public class PlayerController : MonoBehaviour {
                 transform.up = Vector2.right;
             }
         }
-        
+        Vector2 dir = dest - (Vector2)transform.position;
+        //GetComponent<Animator>().SetFloat("dirX", dir.x);
+        GetComponent<Animator>().SetBool("moving", (dir.x != 0 || dir.y != 0));
+
     }
 
     private bool Valid(Vector2 dir)

@@ -1567,7 +1567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5262acc7ee4de48b5b6bf3b2498cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.35
 --- !u!95 &120014206
 Animator:
   serializedVersion: 3
@@ -1577,7 +1576,7 @@ Animator:
   m_GameObject: {fileID: 120014202}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c9aca489ef5f2e43a340a0dfb458bc8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1604,7 +1603,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &120014208
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1617,9 +1616,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010492206, y: 0}
+  m_Offset: {x: 0.0016183257, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4895078
+  m_Radius: 0.45723253
 --- !u!1 &127044643
 GameObject:
   m_ObjectHideFlags: 0

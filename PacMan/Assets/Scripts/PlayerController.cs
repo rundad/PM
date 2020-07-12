@@ -24,24 +24,43 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //move pacman to the destination point
+        //Gets the next point position that towards to the destination
         Vector2 temp = Vector2.MoveTowards(transform.position, dest, speed);
+        //setting the object position by using rigidbody
         GetComponent<Rigidbody2D>().MovePosition(temp);
-        if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        //When pacman reaches to the destination point
+        if((Vector2)transform.position == dest)
         {
-            dest = (Vector2)transform.position + Vector2.up;
+            if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && Valid(Vector2.up))
+            {
+                dest = (Vector2)transform.position + Vector2.up;
+                transform.up = Vector2.up;
+            }
+            if ((Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && Valid(Vector2.down))
+            {
+                dest = (Vector2)transform.position + Vector2.down;
+                transform.up = Vector2.down;
+            }
+            if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && Valid(Vector2.left))
+            {
+                dest = (Vector2)transform.position + Vector2.left;
+                transform.up = Vector2.left;
+            }
+            if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) && Valid(Vector2.right))
+            {
+                dest = (Vector2)transform.position + Vector2.right;
+                transform.up = Vector2.right;
+            }
         }
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            dest = (Vector2)transform.position + Vector2.down;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            dest = (Vector2)transform.position + Vector2.left;
-        }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            dest = (Vector2)transform.position + Vector2.right;
-        }
+        
     }
+
+    private bool Valid(Vector2 dir)
+    {
+        Vector2 pos = transform.position;
+        RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
+        return (hit.collider == GetComponent<Collider2D>());
+    }
+
+
 }

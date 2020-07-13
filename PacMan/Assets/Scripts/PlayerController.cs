@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     //Pacman speed
     private float speed = 0.10f;
+    //player score
+    public int score = 0;
     //RigidBody variable
     Rigidbody2D rb2d;
     Animator animator;
@@ -13,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 
     //Pacman next destination
     private Vector2 dest = Vector2.zero;
-    
+    public GameObject pil;
 
 	// Use this for initialization
 	void Start () {
@@ -56,7 +58,6 @@ public class PlayerController : MonoBehaviour {
             }
         }
         Vector2 dir = dest - (Vector2)transform.position;
-        //GetComponent<Animator>().SetFloat("dirX", dir.x);
         GetComponent<Animator>().SetBool("moving", (dir.x != 0 || dir.y != 0));
 
     }
@@ -65,8 +66,7 @@ public class PlayerController : MonoBehaviour {
     {
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return (hit.collider == GetComponent<Collider2D>());
+        return (hit.collider == GetComponent<Collider2D>() || hit.collider.gameObject.tag == "pill");
     }
-
 
 }

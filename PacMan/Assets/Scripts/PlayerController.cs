@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -8,10 +9,14 @@ public class PlayerController : MonoBehaviour {
     private float speed = 0.10f;
     //player score
     public int score = 0;
+
     //RigidBody variable
     Rigidbody2D rb2d;
+    //Animator
     Animator animator;
-    Vector2 direction;
+    
+    //UI Text element variable use to display the score
+    public Text scoreText;
 
     //Pacman next destination
     private Vector2 dest = Vector2.zero;
@@ -67,6 +72,12 @@ public class PlayerController : MonoBehaviour {
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
         return (hit.collider == GetComponent<Collider2D>() || hit.collider.gameObject.tag == "pill");
+    }
+
+    public void addScore(int points)
+    {
+        score += points;
+        scoreText.text = "" + score;
     }
 
 }

@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 dir = dest - (Vector2)transform.position;
         GetComponent<Animator>().SetBool("moving", (dir.x != 0 || dir.y != 0));
 
+        
     }
 
     private bool Valid(Vector2 dir)
@@ -80,4 +81,9 @@ public class PlayerController : MonoBehaviour {
         scoreText.text = "" + score;
     }
 
+    public void move(Vector2 d)
+    {
+        transform.position = d;
+        dest = d;
+    }
 }

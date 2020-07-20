@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - pill
+  - Wall
   layers:
   - Default
   - TransparentFX

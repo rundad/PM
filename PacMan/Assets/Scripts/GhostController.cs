@@ -32,10 +32,13 @@ public class GhostController : MonoBehaviour {
                 changeDirAtRandom();
             }
                        
-        }else if (canChangeDirection() && Time.time > changeDirectionTime)
+        }
+        //change direction when no walls at front
+        else if (canChangeDirection() && Time.time > changeDirectionTime)
         {
             changeDirAtRandom();
-        }else if(rb2d.velocity.magnitude < speed)//stuck on a object that is not a wall
+        }
+        else if(rb2d.velocity.magnitude < speed)//stuck on a object that is not a wall
         {
             changeDirAtRandom();
         }
@@ -63,6 +66,7 @@ public class GhostController : MonoBehaviour {
         }
     }
 
+    //check the direction is able to change to or not
     private bool checkValidDir(Vector2 direction)
     {
         RaycastHit2D[] rch2ds = new RaycastHit2D[10];
@@ -82,6 +86,7 @@ public class GhostController : MonoBehaviour {
         return true;
     }
 
+    //ghost check is able to change direction
     private bool canChangeDirection()
     {
         Vector2 perpRight = Utility.PerpendicularRight(direction);
@@ -91,6 +96,7 @@ public class GhostController : MonoBehaviour {
         return rightValid || LeftValid;
     }
 
+    //ghost change direction randomly
     private void changeDirAtRandom()
     {
         changeDirectionTime = Time.time + 1;//cant change direction for a second
@@ -100,6 +106,7 @@ public class GhostController : MonoBehaviour {
         }
     }
 
+    //change ghost direction
     private void changeDirection()
     {
         changeDirectionTime = Time.time + 1;//cant change direction for a second
@@ -110,7 +117,7 @@ public class GhostController : MonoBehaviour {
         if (rightValid || LeftValid)
         {
             int randomDir = Random.Range(0, 2);
-            //change direction 90degree, randomly direction
+            //change direction 90degree, random direction
             if (!LeftValid || (randomDir == 0 && rightValid))
             {
                 direction = perpRight;
@@ -126,8 +133,4 @@ public class GhostController : MonoBehaviour {
         }
     }
 
-    public float getSpeed()
-    {
-        return speed;
-    }
 }

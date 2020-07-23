@@ -133,4 +133,13 @@ public class GhostController : MonoBehaviour {
         }
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerController>().move(Vector2.zero);
+            collision.gameObject.GetComponent<PlayerController>().setState(true);
+        }
+    }
 }

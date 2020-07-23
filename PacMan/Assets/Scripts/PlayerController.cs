@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 dest = Vector2.zero;
     public GameObject pil;
 
+    private bool pacman_alive = true;
+
 	// Use this for initialization
 	void Start () {
         //initialize the rigidbody variable
@@ -85,5 +87,11 @@ public class PlayerController : MonoBehaviour {
     {
         transform.position = d;
         dest = d;
+    }
+
+    public void setState(bool aliveState)
+    {
+        pacman_alive = aliveState;
+        animator.SetBool("died", pacman_alive);
     }
 }

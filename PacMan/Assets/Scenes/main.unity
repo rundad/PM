@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 120014208}
   m_Layer: 0
   m_Name: pacman
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1896,7 +1896,7 @@ GameObject:
   - component: {fileID: 375898642}
   m_Layer: 0
   m_Name: teleportPointTwo
-  m_TagString: Untagged
+  m_TagString: pill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1940,7 +1940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df11c05723325c46acf0f4329113ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportTo: {x: 0, y: 0}
+  teleportTo: {x: 9, y: 6}
 --- !u!1001 &376763280
 Prefab:
   m_ObjectHideFlags: 0
@@ -10221,7 +10221,7 @@ GameObject:
   - component: {fileID: 1917707821}
   m_Layer: 0
   m_Name: teleportPointOne
-  m_TagString: Untagged
+  m_TagString: pill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10265,7 +10265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df11c05723325c46acf0f4329113ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportTo: {x: -10.01, y: 6}
+  teleportTo: {x: -9, y: 6}
 --- !u!1001 &1926397238
 Prefab:
   m_ObjectHideFlags: 0

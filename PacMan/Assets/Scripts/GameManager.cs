@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour {
                     pacman.SetActive(true);
                     pacman.GetComponent<PlayerController>().move(Vector2.zero);
                     pacman.GetComponent<PlayerController>().setState(false);
+                    pacman.GetComponent<PlayerController>().setLives(pacman.GetComponent<PlayerController>().lives - 1);
                     foreach(GameObject ghost in ghosts)
                     {
                         ghost.GetComponent<GhostController>().resetPos();

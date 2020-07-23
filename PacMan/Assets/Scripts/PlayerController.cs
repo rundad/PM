@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour {
     public GameObject pil;
 
     private bool pacman_alive = false;
+    public int lives = 2;
+
+    public Image life1;
+    public Image life2;
 
 	// Use this for initialization
 	void Start () {
@@ -95,5 +99,12 @@ public class PlayerController : MonoBehaviour {
     {
         pacman_alive = aliveState;
         animator.SetBool("died", pacman_alive);
+    }
+
+    public void setLives(int lives)
+    {
+        this.lives = lives;
+        life1.enabled = this.lives >= 1;
+        life2.enabled = this.lives >= 2;
     }
 }

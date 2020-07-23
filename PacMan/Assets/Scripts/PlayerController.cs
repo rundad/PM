@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour {
     public void addScore(int points)
     {
         score += points;
-        scoreText.text = "" + score;
+        scoreText.text = "Score:\n\n" + score;
     }
 
     public void move(Vector2 d)

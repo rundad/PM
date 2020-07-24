@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostController : MonoBehaviour {
 
-    private float speed = 2.0f;
+    private float speed = 6.0f;
     private float changeDirectionTime; //the next time the ghost may change direction
     public Vector2 direction = Vector2.up;
     private Rigidbody2D rb2d;
@@ -141,7 +141,7 @@ public class GhostController : MonoBehaviour {
         }
     }
 
-
+    //When ghosts touch to pacman, change pacman states by calling pacmanKilled()
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -150,12 +150,14 @@ public class GhostController : MonoBehaviour {
         }
     }
 
+    //reset ghost position
     public void resetPos()
     {
         transform.position = respawnPos;
         freeze(false);
     }
 
+    //freeze ghost by setting ghost velocity to zero
     public void freeze(bool freeze)
     {
         fronze = freeze;

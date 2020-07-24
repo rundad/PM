@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     //Pacman speed
-    private float speed = 0.10f;
+    private float speed = 0.20f;
     //player score
     public int score = 0;
 
@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour {
     public GameObject pil;
 
     private bool pacman_alive = false;
-    public int lives = 2;
+    private int lives = 3;
 
     public Image life1;
     public Image life2;
+    public Image life3;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         //initialize the rigidbody variable
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -76,6 +77,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    //check infront game object by doing a linecast to get the collide game object
+    //return true if the object is pacman itself or a pill, which means no wall in the way
     private bool Valid(Vector2 dir)
     {
         Vector2 pos = transform.position;
@@ -83,28 +86,41 @@ public class PlayerController : MonoBehaviour {
         return (hit.collider == GetComponent<Collider2D>() || hit.collider.gameObject.tag == "pill");
     }
 
+    //Add points to the score when collects a pill
+    //Update the score text
     public void addScore(int points)
     {
         score += points;
         scoreText.text = "Score:\n\n" + score;
     }
 
+    //Moves pacman to a position instantly, acts like teleport
     public void move(Vector2 d)
     {
         transform.position = d;
         dest = d;
     }
 
+    //setting pacman alive state and pacman die animation state
     public void setState(bool aliveState)
     {
         pacman_alive = aliveState;
         animator.SetBool("died", pacman_alive);
     }
 
-    public void setLives(int lives)
+    //update player's lives
+    //enable life image depends on the lives left over
+    public void setLives()
     {
-        this.lives = lives;
-        life1.enabled = this.lives >= 1;
-        life2.enabled = this.lives >= 2;
+        this.lives = this.lives - 1;
+        life1.enabled = this.lives > 0;
+        life2.enabled = this.lives > 1;
+        life3.enabled = this.lives > 2;
+    }
+
+    //Return player's lives
+    public int getLives()
+    {
+        return lives;
     }
 }

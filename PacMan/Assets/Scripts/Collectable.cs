@@ -21,7 +21,7 @@ public class Collectable : MonoBehaviour {
         if(collision.gameObject.name == "pacman")
         {
             collision.gameObject.GetComponent<PlayerController>().addScore(points);
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
         
     }

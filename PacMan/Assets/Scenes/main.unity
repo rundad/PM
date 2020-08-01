@@ -504,7 +504,6 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 1579648065}
   pil: {fileID: 2070352527}
-  lives: 2
   life1: {fileID: 960351062}
   life2: {fileID: 1683168110}
   life3: {fileID: 1531955638}
@@ -3159,6 +3158,7 @@ RectTransform:
   - {fileID: 669476201}
   - {fileID: 632595013}
   - {fileID: 1320798126}
+  - {fileID: 1300117726}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5170,6 +5170,7 @@ MonoBehaviour:
   startCountDowns: {fileID: 1165502150010348, guid: fbba4ff6aa0f53d49ab8be438ca6aab6,
     type: 2}
   time: {fileID: 1986591861}
+  resetText: {fileID: 1300117723}
 --- !u!4 &897733750
 Transform:
   m_ObjectHideFlags: 0
@@ -7303,6 +7304,80 @@ Transform:
   m_PrefabParentObject: {fileID: 4792826251042278, guid: dc57bf8190d11814198e60994e767d70,
     type: 2}
   m_PrefabInternal: {fileID: 1298108491}
+--- !u!1 &1300117723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1300117726}
+  - component: {fileID: 1300117725}
+  - component: {fileID: 1300117724}
+  m_Layer: 5
+  m_Name: Reload
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1300117724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300117723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a386b3279b0c72b44aa1c4743e8357a1, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\"Press Enter To \n\nReset The Game\""
+--- !u!222 &1300117725
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300117723}
+--- !u!224 &1300117726
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300117723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 611020099}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 37.4, y: -187.22508}
+  m_SizeDelta: {x: 455.37, y: 71.03}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1305346324
 GameObject:
   m_ObjectHideFlags: 0

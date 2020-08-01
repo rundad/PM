@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
     public GameObject gamePanel;
     public GameObject startCountDowns;
     public Text time;
+    public GameObject resetText;
 
 	// Use this for initialization
 	void Start () {
@@ -98,8 +99,9 @@ public class GameManager : MonoBehaviour {
 
                 gameOver.SetActive(true);//enable game over UI Image
                 gameWon.SetActive(false);//disable game win UI Image
+                resetText.SetActive(true);//enable game reset text UI
                 setGameState(false);//disable all moving game objects movement
-                if (Input.anyKeyDown)//player can reset the game when the game is over
+                if (Input.GetKeyDown(KeyCode.Return))//player can reset the game when the game is over
                 {
                     resetGame();
                 }
@@ -107,8 +109,9 @@ public class GameManager : MonoBehaviour {
             case GameState.GAME_WON://player collected all pills
                 gamePanel.SetActive(false);//disable game panel
                 gameWon.SetActive(true);//enable game win UI Image
+                resetText.SetActive(true);//enable game reset text UI
                 setGameState(false);//disable all game object movement
-                if (Input.anyKeyDown)//player can restart the game by enter any key down
+                if (Input.GetKeyDown(KeyCode.Return))//player can restart the game by enter any key down
                 {
                     resetGame();
                 }
@@ -175,7 +178,11 @@ public class GameManager : MonoBehaviour {
         Application.Quit();
     }
 
-    //
+    //Plays the start counts down
+    //wait 4 second for the count down to finish
+    //destory the count down prefab clone after the count down
+    //enable the movement of all game objects
+    //enable the game panel
     IEnumerator startCountDown()
     {
         GameObject gameobject = Instantiate(startCountDowns);

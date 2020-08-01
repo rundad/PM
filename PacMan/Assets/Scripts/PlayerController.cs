@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour {
     {
         Vector2 pos = transform.position;
         RaycastHit2D hit = Physics2D.Linecast(pos + dir, pos);
-        return (hit.collider == GetComponent<Collider2D>() || hit.collider.gameObject.tag == "pill");
+        return (hit.collider == GetComponent<Collider2D>() || hit.collider.gameObject.tag == "pill" || hit.collider.gameObject.tag == "ghost");
     }
 
     //Add points to the score when collects a pill

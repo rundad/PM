@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour {
     public Text time;
     public GameObject resetText;
 
+    private Transform playerTransform;
+    public bool isSuperPacman;
 	// Use this for initialization
 	void Start () {
 		if(instance == null)
@@ -43,10 +45,17 @@ public class GameManager : MonoBehaviour {
         //gameOver.SetActive(false);
         //gameWon.SetActive(false);
         setGameState(false);
+        playerTransform = pacman.transform;
+        if (!playerTransform)
+        {
+            print("pacman does not exist..");
+        }
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
         switch (gameState)
         {
             case GameState.PLAY:
@@ -148,8 +157,12 @@ public class GameManager : MonoBehaviour {
         //pacman.SetActive(true);
         //foreach (GameObject ghost in ghosts)
         //{
-            //ghost.GetComponent<GhostController>().resetPos();
-       // }
+        //ghost.GetComponent<GhostController>().resetPos();
+        // }
+        foreach (GameObject ghost in ghosts)
+        {
+            ghost.GetComponent<GhostController>().freeze(true);
+        }
         SceneManager.LoadScene(0);
     }
 
@@ -190,5 +203,55 @@ public class GameManager : MonoBehaviour {
         Destroy(gameobject);
         setGameState(true);
         gamePanel.SetActive(true);
+    }
+
+    //Return gameManager instance
+    public static GameManager getInstance()
+    {
+        return instance;
+    }
+
+    //Freeze ghosts and set the color of 'a' in rgba for the ghosts to look a bit transparent
+    private void freezeGhosts()
+    {
+        foreach(GameObject ghost in ghosts)
+        {
+            Color color = ghost.GetComponent<SpriteRenderer>().color;
+            color.a = color.a - 0.3f;
+            ghost.GetComponent<GhostController>().freeze(true);
+            ghost.GetComponent<SpriteRenderer>().color = color;
+        }
+    }
+
+    //Un-freeze the ghosts and reset the color back to normal
+    private void unFreezeGhosts()
+    {
+        foreach (GameObject ghost in ghosts)
+        {
+            Color color = ghost.GetComponent<SpriteRenderer>().color;
+            color.a = 1.0f;
+            ghost.GetComponent<GhostController>().freeze(false);
+            ghost.GetComponent<SpriteRenderer>().color = color;
+        }
+    }
+
+    //Coroutine to wait for 3 seconds, which is the time for pacman can being a super pacman
+    //un-freeze the ghosts after 3 seconds
+    //set isSuperPacman state to false, indicates that pacman is not a superpacman anymore
+    IEnumerator ghostRecovery()
+    {
+        yield return new WaitForSeconds(3f);
+        unFreezeGhosts();
+        isSuperPacman = false;
+    }
+
+    //Called when pacman collects a super pill
+    //freeze the ghosts
+    //start a coroutine to reset the ghosts 
+    public void eatSuperPill()
+    {
+        isSuperPacman = true;
+        freezeGhosts();
+        StartCoroutine(ghostRecovery());
     }
 }

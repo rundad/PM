@@ -13,6 +13,7 @@ public class GhostController : MonoBehaviour {
     private bool fronze = false;
     private Vector2 respawnPos;
 
+    private int points = 400;
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -146,7 +147,16 @@ public class GhostController : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            GameManager.pacmanKilled();
+            if (GameManager.getInstance().isSuperPacman)//is the pacman is on superpacman mode
+            {
+                transform.position = respawnPos;//go back to respawn position
+                collision.gameObject.GetComponent<PlayerController>().addScore(points);//add score
+            }
+            else
+            {
+                GameManager.pacmanKilled();
+
+            }
         }
     }
 
@@ -163,4 +173,6 @@ public class GhostController : MonoBehaviour {
         fronze = freeze;
         rb2d.velocity = Vector2.zero;
     }
+
+    
 }
